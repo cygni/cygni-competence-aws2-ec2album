@@ -1,0 +1,15 @@
+{
+  "name": "ec2-album",
+  "version": "1.0.0",
+  "description": "shows images from S3 bucket",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Robert Buren <robert.buren@cygni.se>",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.82.0",
+    "express": "^4.15.3"
+  }
+}

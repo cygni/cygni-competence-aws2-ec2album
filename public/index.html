@@ -1,0 +1,48 @@
+<html>
+<head>
+  <title>Cygni images</title>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <style type="text/css">
+    .thumbnail {
+      width: 30%;
+      display: inline-block;
+    }
+    .thumbnail img {
+      width: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cygni-bilder</h1>
+
+  <section id="thumbnails"></section>
+
+  <section id="template" style="display:none">
+    <div class="thumbnail">
+      <a href><img src /></a>
+      <div class="imagetext" />
+    </div>
+  </section>
+  <script lang="javascript">
+
+    $(function(){
+      $.get('/thumbnails', function(data){
+        console.log(`data: ${JSON.stringify(data)}`);
+        var template = $('#template .thumbnail')
+        $('#thumbnails').text('')
+        for (var i=0; i<data.images.length; i++) {
+          var element = template.clone()
+          element.find('a').attr('href', data.images[i].img_url)
+          element.find('a img').attr('src', data.images[i].img_url)
+          element.find('.imagetext').text(data.images[i].img_text)
+          $('#thumbnails').append(element)
+        }
+      });
+    });
+  </script>
+</body>
+</html>
