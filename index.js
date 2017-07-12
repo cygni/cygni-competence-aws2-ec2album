@@ -24,6 +24,7 @@ function s3_list_objects() {
         }
         console.log(`adding object ${JSON.stringify(img_obj)}`)
         s3_objects.push(img_obj)
+        console.log(`s3_objects is now ${JSON.stringify(s3_objects)}`)
       }
     }
     return s3_objects
