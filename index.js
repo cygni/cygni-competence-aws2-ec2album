@@ -22,6 +22,7 @@ function s3_list_objects() {
           img_url: `https://${params.Bucket}/${s3_object.Key}`,
           img_text: s3_object.LastModified
         }
+        console.log(`adding object ${JSON.stringify(img_obj)}`)
         objects.push(img_obj)
       }
     }
