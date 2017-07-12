@@ -11,7 +11,7 @@ function s3_list_objects() {
     Bucket: "examplebucket",
     MaxKeys: 200
   }
-  let objects = []
+  let s3_objects = []
   S3.listObjectsV2(params, function(err, data) {
     if (err) {
       console.log(err, err.stack)
@@ -19,14 +19,14 @@ function s3_list_objects() {
       for (let i=0; i<data.Contents.length; i++) {
         let s3_object = data.Contents[i]
         let img_obj = {
-          img_url: `https://${params.Bucket}/${s3_object.Key}`,
+          img_url: `https://s3.eu-central-1.amazonaws.com/${params.Bucket}/${s3_object.Key}`,
           img_text: s3_object.LastModified
         }
         console.log(`adding object ${JSON.stringify(img_obj)}`)
-        objects.push(img_obj)
+        s3_objects.push(img_obj)
       }
     }
-    return objects
+    return s3_objects
   })
 }
 
