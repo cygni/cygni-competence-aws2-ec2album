@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk')
-const S3 = new AWS.S3()
+const S3 = new AWS.S3({region: 'eu-central-1'})
 const express = require('express')
 const app = express()
 const path = require("path")
@@ -34,6 +34,8 @@ app.get('/', function(req, res) {
 })
 
 app.get('/thumbnails', function(req, res) {
+  let objs = s3_list_objects()
+  console.log(`sending: ${JSON.stringify(objs)}`)
   res.send({images: s3_list_objects()})
   /*
   let dummy = {images: [
@@ -87,6 +89,6 @@ app.get('/thumbnails', function(req, res) {
   */
 })
 
-app.listen(3000, function() {
-  console.log('Example app listening on port 3000!')
+app.listen(80, function() {
+  console.log('Example app listening on port 80!')
 })
