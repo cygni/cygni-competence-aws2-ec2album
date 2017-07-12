@@ -11,7 +11,7 @@ function s3_list_objects() {
     Bucket: "examplebucket",
     MaxKeys: 200
   }
-  let s3_objects = []
+  var s3_objects = []
   S3.listObjectsV2(params, function(err, data) {
     if (err) {
       console.log(err, err.stack)
