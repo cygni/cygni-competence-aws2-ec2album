@@ -6,7 +6,7 @@ const path = require("path")
 
 app.use(express.static('public'))
 
-function s3_list_objects() {
+function s3_list_objects(do_after) {
   var params = {
     Bucket: "examplebucket",
     MaxKeys: 200
@@ -27,7 +27,7 @@ function s3_list_objects() {
         console.log(`s3_objects is now ${JSON.stringify(s3_objects)}`)
       }
     }
-    return s3_objects
+    return do_after(s3_objects)
   })
 }
 
@@ -36,60 +36,8 @@ app.get('/', function(req, res) {
 })
 
 app.get('/thumbnails', function(req, res) {
-  let objs = s3_list_objects()
-  console.log(`sending: ${JSON.stringify(objs)}`)
-  res.send({images: s3_list_objects()})
-  /*
-  let dummy = {images: [
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    },
-    {    img_url: 'https://cdn-a.verkkokauppa.com/files/59562/04cec/50327/e161f/9da3.jpg',
-        img_text: 'Robert'
-    }
-  ]}
-  res.send(dummy)
-  */
-})
+  s3_list_objects((objs)=>{ res.send({images: objs}) })
+  })
 
 app.listen(80, function() {
   console.log('Example app listening on port 80!')
