@@ -18,9 +18,7 @@
 </head>
 <body>
   <h1>Cygni-bilder</h1>
-
   <section id="thumbnails"></section>
-
   <section id="template" style="display:none">
     <div class="thumbnail">
       <a href><img src /></a>
@@ -28,12 +26,10 @@
     </div>
   </section>
   <script lang="javascript">
-
     $(function(){
       $.get('/thumbnails', function(data){
-        console.log(`data: ${JSON.stringify(data)}`);
         var template = $('#template .thumbnail')
-        $('#thumbnails').text('')
+        $('#thumbnails').text('-- None yet --')
         for (var i=0; i<data.images.length; i++) {
           var element = template.clone()
           element.find('a').attr('href', data.images[i].img_url)
