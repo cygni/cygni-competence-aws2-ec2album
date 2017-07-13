@@ -6,4 +6,5 @@ sudo yum install git nodejs -y
 git clone https://github.com/robu/ec2-album.git
 cd ec2-album
 sed -i 's/examplebucket/ACTUALBUCKETNAME/g' index.js
+npm install
 sudo node index.js

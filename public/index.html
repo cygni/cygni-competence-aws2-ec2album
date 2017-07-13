@@ -29,7 +29,8 @@
     $(function(){
       $.get('/thumbnails', function(data){
         var template = $('#template .thumbnail')
-        $('#thumbnails').text('-- None yet --')
+        var reset_text = data.images.length == 0 ? '-- None yet --' : ''
+        $('#thumbnails').text(reset_text)
         for (var i=0; i<data.images.length; i++) {
           var element = template.clone()
           element.find('a').attr('href', data.images[i].img_url)
