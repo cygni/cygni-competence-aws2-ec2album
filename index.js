@@ -29,14 +29,10 @@ function s3_list_objects(do_after) {
   })
 }
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname+'/index.html'))
-})
-
 app.get('/thumbnails', function(req, res) {
   s3_list_objects((objs)=>{ res.send({images: objs}) })
   })
 
 app.listen(80, function() {
-  console.log('Example app listening on port 80!')
+  console.log('EC2+S3 album listening on port 80!')
 })
