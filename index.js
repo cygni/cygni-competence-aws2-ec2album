@@ -22,9 +22,7 @@ function s3_list_objects(do_after) {
           img_url: `https://s3.eu-central-1.amazonaws.com/${params.Bucket}/${s3_object.Key}`,
           img_text: s3_object.LastModified
         }
-        console.log(`adding object ${JSON.stringify(img_obj)}`)
         s3_objects.push(img_obj)
-        console.log(`s3_objects is now ${JSON.stringify(s3_objects)}`)
       }
     }
     return do_after(s3_objects)
