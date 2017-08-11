@@ -22,7 +22,9 @@ function s3_list_objects(do_after) {
           img_url: `https://s3.eu-central-1.amazonaws.com/${params.Bucket}/${s3_object.Key}`,
           img_text: s3_object.LastModified
         }
-        s3_objects.push(img_obj)
+        if (s3_object.Key.match(/_cyg/)) { // only include images with cygni watermark
+          s3_objects.push(img_obj)
+        }
       }
     }
     return do_after(s3_objects)
