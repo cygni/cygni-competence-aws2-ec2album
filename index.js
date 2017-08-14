@@ -3,6 +3,7 @@ const S3 = new AWS.S3({region: 'eu-central-1'})
 const express = require('express')
 const app = express()
 const path = require("path")
+const ip = require('ip')
 
 app.use(express.static('public'))
 
@@ -30,6 +31,10 @@ function s3_list_objects(do_after) {
     return do_after(s3_objects)
   })
 }
+
+app.get('/ip', function(req,res){
+  res.send(ip.address())
+})
 
 app.get('/thumbnails', function(req, res) {
   s3_list_objects((objs)=>{ res.send({images: objs}) })
