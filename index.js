@@ -23,18 +23,11 @@ function s3_list_objects(do_after) {
           img_url: `https://s3.eu-central-1.amazonaws.com/${params.Bucket}/${s3_object.Key}`,
           img_text: s3_object.LastModified
         }
-        if (s3_object.Key.match(/_cyg/)) { // only include images with cygni watermark
-          s3_objects.push(img_obj)
-        }
       }
     }
     return do_after(s3_objects)
   })
 }
-
-app.get('/ip', function(req,res){
-  res.send(ip.address())
-})
 
 app.get('/thumbnails', function(req, res) {
   s3_list_objects((objs)=>{ res.send({images: objs}) })
