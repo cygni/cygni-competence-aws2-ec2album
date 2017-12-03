@@ -2,13 +2,13 @@
 
 ## Pre-setup
 
-1. Log in to AWS console, on the eu-central-1 region
+1. Log in to AWS console, on the eu-central-1 region. Region is hardcoded, so other regions **will not work** with this code.
 1. Setup IAM role 'ec2-with-s3': with AmazonS3FullAccess
 1. Create S3 bucket. Make sure that it is publicly readable. Make note of name, to be used below
 
 ## Installation / Launch
 
-1. Create EC2 instance: Amazon AMI, t2.micro
+1. Create EC2 instance: **Amazon AMI**, t2.micro
 1. IAM role: 'ec2-with-s3'
 1. Advanced details: user data: paste install.sh
 1. Before moving on, paste name of S3 bucket to replace "ACTUALBUCKETNAME" in the user data
