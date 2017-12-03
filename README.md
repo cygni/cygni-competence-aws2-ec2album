@@ -12,14 +12,12 @@ In order to make the bucket open for public, you need to configure this bucket p
 {
   "Version":"2012-10-17",
   "Statement":[{
-	"Sid":"PublicReadGetObject",
-        "Effect":"Allow",
-	  "Principal": "*",
-      "Action":["s3:GetObject"],
-      "Resource":["arn:aws:s3:::example-bucket/*"
-      ]
-    }
-  ]
+    "Sid":"PublicReadGetObject",
+    "Effect":"Allow",
+    "Principal": "*",
+    "Action":["s3:GetObject"],
+    "Resource":["arn:aws:s3:::example-bucket/*"]
+  }]
 }
 ```
 
