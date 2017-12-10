@@ -19,6 +19,7 @@
 </head>
 <body>
   <h1>Cygni-bilder</h1>
+  <section id="server-ip">Server-adress: <span id="ip-address">?</span></section>
   <section id="thumbnails"></section>
   <section id="template" style="display:none">
     <div class="thumbnail">
@@ -40,6 +41,7 @@
           $('#thumbnails').append(element)
         }
       });
+      $('#ip-address').load('/ip');
     });
   </script>
 </body>

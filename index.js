@@ -32,6 +32,10 @@ function s3_list_objects(do_after) {
   })
 }
 
+app.get('/ip', function(req,res){
+  res.send(ip.address())
+})
+
 app.get('/thumbnails', function(req, res) {
   s3_list_objects((objs)=>{ res.send({images: objs}) })
   })
