@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /home/ec2-user
-sudo yum update -y
+# sudo yum update -y
 sudo curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
 sudo yum install git nodejs -y
 git clone --depth 1 https://github.com/cygni/cygni-competence-aws2-ec2album ec2-album
