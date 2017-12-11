@@ -6,7 +6,8 @@
 1. Setup IAM role 'ec2-with-s3': with AmazonS3FullAccess
 1. Create S3 bucket. Make sure that it is publicly readable. Make note of name, to be used below
 
-In order to make the bucket open for public, you need to configure this bucket policy:
+To make the bucket open for public, you can configure the following bucket policy.
+This is **not actually necessary** for this application but may help with debugging.
 
 ```javascript
 {
